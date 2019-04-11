@@ -50,7 +50,7 @@
             android:textColor="@color/colorWhite"
             />
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btnsignupbg"

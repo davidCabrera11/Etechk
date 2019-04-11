@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogin, btnRegister;
+    Button btnLogin, btnbtnSignUp;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnLogin=findViewById(R.id.btnUserLogin);
-        btnRegister=findViewById(R.id.btnRegister);
+        btnbtnSignUp=findViewById(R.id.btnSignUp);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnbtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

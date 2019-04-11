@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegisterActivity extends AppCompatActivity {
 
 
@@ -17,11 +19,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button btnRegister;
 
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mAuth = FirebaseAuth.getInstance();
 
         uFirstName = findViewById(R.id.userFirstName);
         uLastName = findViewById(R.id.userLastName);
@@ -42,41 +48,48 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String strFirstName = uFirstName.getText().toString().trim();
-                String strLastName = uLastName.getText().toString().trim();
-                String strEmail = uEmail.getText().toString().trim();
-                String strPassword = uPassword.getText().toString().trim();
-                String strConfirmPassword = uConfirmPassword.getText().toString().trim();
+                if(mAuth.getCurrentUser()!=null){
+                    //User is logged in and can redirect to another activity
 
-                if(strFirstName.isEmpty()){
-                    userFirstNameWrapper.setError("Enter First Name");
-                    userFirstNameWrapper.requestFocus();
-                    return;
-                }
-                if(strLastName.isEmpty()){
-                    userLastNameWrapper.setError("Enter Last Name");
-                    userLastNameWrapper.requestFocus();
-                    return;
-                }
-                if(strEmail.isEmpty()){
-                    userEmailWrapper.setError("Enter Email");
-                    userEmailWrapper.requestFocus();
-                    return;
-                }
-                if(strPassword.isEmpty()){
-                    userPasswordWrapper.setError("Enter Password");
-                    userPasswordWrapper.requestFocus();
-                    return;
-                }
-                if(strConfirmPassword.isEmpty()){
-                    userConfirmPasswordWrapper.setError("Confirm Password");
-                    userConfirmPasswordWrapper.requestFocus();
-                    return;
-                }
-                if(!strPassword.equals(strConfirmPassword)){
-                    userConfirmPasswordWrapper.setError("Password did not match");
-                    userConfirmPasswordWrapper.requestFocus();
-                    return;
+                }else {
+
+                    String strFirstName = uFirstName.getText().toString().trim();
+                    String strLastName = uLastName.getText().toString().trim();
+                    String strEmail = uEmail.getText().toString().trim();
+                    String strPassword = uPassword.getText().toString().trim();
+                    String strConfirmPassword = uConfirmPassword.getText().toString().trim();
+
+                    if (strFirstName.isEmpty()) {
+                        userFirstNameWrapper.setError("Enter First Name");
+                        userFirstNameWrapper.requestFocus();
+                        return;
+                    }
+                    if (strLastName.isEmpty()) {
+                        userLastNameWrapper.setError("Enter Last Name");
+                        userLastNameWrapper.requestFocus();
+                        return;
+                    }
+                    if (strEmail.isEmpty()) {
+                        userEmailWrapper.setError("Enter Email");
+                        userEmailWrapper.requestFocus();
+                        return;
+                    }
+                    if (strPassword.isEmpty()) {
+                        userPasswordWrapper.setError("Enter Password");
+                        userPasswordWrapper.requestFocus();
+                        return;
+                    }
+                    if (strConfirmPassword.isEmpty()) {
+                        userConfirmPasswordWrapper.setError("Confirm Password");
+                        userConfirmPasswordWrapper.requestFocus();
+                        return;
+                    }
+                    if (!strPassword.equals(strConfirmPassword)) {
+                        userConfirmPasswordWrapper.setError("Password did not match");
+                        userConfirmPasswordWrapper.requestFocus();
+                        return;
+                    }
+
                 }
 
 
